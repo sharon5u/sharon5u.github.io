@@ -1,0 +1,446 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;800&display=swap');
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ─────────────────────────────────────────────
+   APP SHELL  — dark purple, fills viewport
+───────────────────────────────────────────── */
+body {
+  font-family: 'Nunito', sans-serif;
+  background: #1e1535;
+  color: #fff;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ─────────────────────────────────────────────
+   TOP BAR
+───────────────────────────────────────────── */
+#topbar {
+  flex-shrink: 0;
+  height: 52px;
+  background: #150f2a;
+  border-bottom: 2px solid #2e2050;
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  gap: 16px;
+  z-index: 100;
+}
+
+#topbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.logo-icon { font-size: 28px; line-height: 1; }
+
+.logo-text {
+  font-family: 'Fredoka One', cursive;
+  font-size: 15px;
+  line-height: 1.1;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.logo-sub { color: #9b8dff; font-size: 13px; }
+
+#topbar-title {
+  flex: 1;
+  text-align: center;
+  font-family: 'Fredoka One', cursive;
+  font-size: 22px;
+  color: #c4b8ff;
+  letter-spacing: 1px;
+}
+
+#topbar-score-wrap { margin-left: auto; display: flex; gap: 10px; }
+
+#topbar-score, #topbar-coins {
+  background: rgba(255,255,255,0.08);
+  border: 1.5px solid rgba(255,255,255,0.15);
+  border-radius: 50px;
+  padding: 5px 18px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 20px;
+  color: #ffe066;
+  letter-spacing: 1px;
+  min-width: 90px;
+  text-align: center;
+}
+
+#topbar-coins {
+  color: #ffd54a;
+  border-color: rgba(255,213,74,0.3);
+}
+
+#mute-btn {
+  background: rgba(255,255,255,0.08);
+  border: 1.5px solid rgba(255,255,255,0.15);
+  border-radius: 50px;
+  width: 38px;
+  height: 38px;
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+  color: #fff;
+  transition: background 0.15s, transform 0.1s;
+}
+#mute-btn:hover  { background: rgba(255,255,255,0.16); }
+#mute-btn:active { transform: scale(0.92); }
+
+/* ─────────────────────────────────────────────
+   MAIN ROW  — sidebar + game frame
+───────────────────────────────────────────── */
+#main {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  align-items: stretch;
+}
+
+/* ─────────────────────────────────────────────
+   LEFT SIDEBAR
+───────────────────────────────────────────── */
+#sidebar {
+  flex-shrink: 0;
+  width: 220px;
+  background: #150f2a;
+  border-right: 2px solid #2e2050;
+  overflow-y: auto;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#sidebar::-webkit-scrollbar { width: 4px; }
+#sidebar::-webkit-scrollbar-track { background: transparent; }
+#sidebar::-webkit-scrollbar-thumb { background: #3a2d6a; border-radius: 4px; }
+
+.sidebar-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-heading {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #7a6aaa;
+  padding: 0 4px 4px;
+  border-bottom: 1px solid #2e2050;
+}
+
+/* Theme buttons */
+.theme-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1.5px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 10px 10px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+  text-align: left;
+  width: 100%;
+  color: #d0c8ff;
+}
+
+.theme-btn:hover {
+  background: rgba(255,255,255,0.09);
+  border-color: rgba(155,141,255,0.4);
+  transform: translateX(2px);
+}
+
+.theme-btn.active {
+  background: linear-gradient(135deg, rgba(124,110,240,0.35), rgba(91,79,207,0.25));
+  border-color: #7c6ef0;
+  color: #fff;
+}
+
+.theme-btn.active .theme-name { color: #c4b8ff; }
+
+.theme-icon { font-size: 22px; line-height: 1; flex-shrink: 0; }
+
+.theme-info { display: flex; flex-direction: column; gap: 1px; }
+
+.theme-name {
+  font-weight: 800;
+  font-size: 13px;
+  color: #e0d8ff;
+  line-height: 1.2;
+}
+
+.theme-desc {
+  font-size: 11px;
+  color: #7a6aaa;
+  line-height: 1.3;
+}
+
+/* Controls grid */
+.controls-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 2px 4px;
+}
+
+.ctrl-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: #9a8ec8;
+}
+
+.ctrl-row span { margin-left: 2px; }
+
+kbd {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 24px;
+  height: 22px;
+  padding: 0 5px;
+  background: #2a1f4e;
+  border: 1.5px solid #3d2f7a;
+  border-bottom-width: 3px;
+  border-radius: 5px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  color: #c4b8ff;
+}
+
+/* High score */
+#sidebar-highscore {
+  font-family: 'Fredoka One', cursive;
+  font-size: 32px;
+  color: #ffe066;
+  text-align: center;
+  padding: 4px 0 2px;
+  text-shadow: 0 2px 8px rgba(255,224,102,0.3);
+}
+
+/* Best coins (same treatment, gold-accented) */
+.stat-gold {
+  font-family: 'Fredoka One', cursive;
+  font-size: 32px;
+  color: #ffd54a;
+  text-align: center;
+  padding: 4px 0 2px;
+  text-shadow: 0 2px 8px rgba(255,213,74,0.3);
+}
+
+/* ─────────────────────────────────────────────
+   GAME FRAME  — centred content area
+───────────────────────────────────────────── */
+#game-frame {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #251b47;
+  overflow: hidden;
+  gap: 0;
+}
+
+/* Frame title bar — mimics the Crossy Road chrome strip */
+#frame-titlebar {
+  width: 832px;
+  max-width: 95vw;
+  background: #150f2a;
+  border: 2px solid #2e2050;
+  border-bottom: none;
+  border-radius: 14px 14px 0 0;
+  padding: 9px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#frame-game-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 16px;
+  color: #c4b8ff;
+  letter-spacing: 0.5px;
+}
+
+#frame-theme-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #7a6aaa;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid #2e2050;
+  border-radius: 20px;
+  padding: 3px 12px;
+}
+
+/* Canvas wrapper */
+#game-container {
+  position: relative;
+  line-height: 0;   /* removes inline gap below canvas */
+  border: 2px solid #2e2050;
+  border-top: none;
+  border-bottom: none;
+}
+
+#gameCanvas {
+  display: block;
+}
+
+/* Bottom bar */
+#frame-bottombar {
+  width: 832px;
+  max-width: 95vw;
+  background: #150f2a;
+  border: 2px solid #2e2050;
+  border-top: none;
+  border-radius: 0 0 14px 14px;
+  padding: 8px 18px;
+  font-size: 11px;
+  color: #5a4f8a;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+/* ─────────────────────────────────────────────
+   IN-GAME SCREENS  (start / game-over)
+───────────────────────────────────────────── */
+.screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(20, 13, 40, 0.55);
+  backdrop-filter: blur(10px);
+  z-index: 20;
+  animation: fadeIn 0.25s ease;
+}
+
+.screen.hidden { display: none; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.screen-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 32px 36px;
+  background: rgba(255,255,255,0.94);
+  border-radius: 24px;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.5);
+  min-width: 270px;
+}
+
+.penguin-logo {
+  font-size: 68px;
+  line-height: 1;
+  animation: bounce 0.8s infinite alternate;
+}
+.penguin-logo.sad { animation: wobble 0.6s infinite alternate; }
+
+@keyframes bounce {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-10px); }
+}
+@keyframes wobble {
+  from { transform: rotate(-10deg); }
+  to   { transform: rotate(10deg); }
+}
+
+h1 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 38px;
+  color: #4a3fcf;
+  text-shadow: 2px 2px 0 #d0c9ff;
+  line-height: 1;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: #888;
+  font-weight: 700;
+}
+
+.score-display-final {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  color: #777;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+#final-score {
+  font-family: 'Fredoka One', cursive;
+  font-size: 54px;
+  color: #4a3fcf;
+  line-height: 1.1;
+}
+
+.coins-final {
+  margin-top: 8px;
+}
+
+#final-coins {
+  font-family: 'Fredoka One', cursive;
+  font-size: 34px;
+  color: #dd9c00;
+  line-height: 1.1;
+}
+
+.high-score {
+  font-size: 13px;
+  color: #f97316;
+  font-weight: 800;
+}
+
+/* ── Button ──────────────────────────────── */
+.btn {
+  background: linear-gradient(135deg, #7c6ef0, #5b4fcf);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 13px 36px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 5px 0 #3d2fa0, 0 8px 20px rgba(91,79,207,0.4);
+  transition: transform 0.1s, box-shadow 0.1s;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 0 #3d2fa0, 0 12px 24px rgba(91,79,207,0.45);
+}
+.btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 #3d2fa0, 0 4px 10px rgba(91,79,207,0.3);
+}
