@@ -1,1 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pingu Hop 🐧</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
+  <!-- ── App Shell ───────────────────────────── -->
+  <div id="app">
+
+    <!-- ── Top Bar ──────────────────────────── -->
+    <header id="topbar">
+      <div id="topbar-logo">
+        <span class="logo-icon">🐧</span>
+        <span class="logo-text">PINGU<br><span class="logo-sub">HOP</span></span>
+      </div>
+      <div id="topbar-title">Pingu Hop!</div>
+      <div id="topbar-score-wrap">
+        <div id="topbar-coins">🪙 <span id="coins">0</span></div>
+        <div id="topbar-score">🐾 <span id="score">0</span></div>
+      </div>
+    </header>
+
+    <!-- ── Main Content ─────────────────────── -->
+    <div id="main">
+
+      <!-- ── Left Sidebar ───────────────────── -->
+      <aside id="sidebar">
+        <div class="sidebar-section">
+          <div class="sidebar-heading">🎨 World Theme</div>
+
+          <button class="theme-btn active" data-theme="default">
+            <span class="theme-icon">🌿</span>
+            <div class="theme-info">
+              <div class="theme-name">Classic Meadow</div>
+              <div class="theme-desc">Green fields &amp; sunny roads</div>
+            </div>
+          </button>
+
+          <button class="theme-btn" data-theme="winter">
+            <span class="theme-icon">❄️</span>
+            <div class="theme-info">
+              <div class="theme-name">Winter Snow</div>
+              <div class="theme-desc">Icy paths &amp; frozen rivers</div>
+            </div>
+          </button>
+
+          <button class="theme-btn" data-theme="beach">
+            <span class="theme-icon">🏖️</span>
+            <div class="theme-info">
+              <div class="theme-name">The Beach</div>
+              <div class="theme-desc">Sandy shores &amp; ocean waves</div>
+            </div>
+          </button>
+
+          <button class="theme-btn" data-theme="desert">
+            <span class="theme-icon">🏜️</span>
+            <div class="theme-info">
+              <div class="theme-name">Rocky Desert</div>
+              <div class="theme-desc">Dusty trails &amp; canyon roads</div>
+            </div>
+          </button>
+
+          <button class="theme-btn" data-theme="space">
+            <span class="theme-icon">🚀</span>
+            <div class="theme-info">
+              <div class="theme-name">Jumpy Space</div>
+              <div class="theme-desc">Weightless hops &amp; asteroid strikes</div>
+            </div>
+          </button>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-heading">🎮 Controls</div>
+          <div class="controls-grid">
+            <div class="ctrl-row">
+              <kbd>↑</kbd><kbd>W</kbd> <span>Forward</span>
+            </div>
+            <div class="ctrl-row">
+              <kbd>↓</kbd><kbd>S</kbd> <span>Back</span>
+            </div>
+            <div class="ctrl-row">
+              <kbd>←</kbd><kbd>A</kbd> <span>Left</span>
+            </div>
+            <div class="ctrl-row">
+              <kbd>→</kbd><kbd>D</kbd> <span>Right</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-heading">🏆 Best Score</div>
+          <div id="sidebar-highscore">—</div>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-heading">🪙 Best Coins</div>
+          <div id="sidebar-best-coins" class="stat-gold">—</div>
+        </div>
+      </aside>
+
+      <!-- ── Game Frame ──────────────────────── -->
+      <div id="game-frame">
+        <!-- Title bar mimicking the Crossy Road chrome -->
+        <div id="frame-titlebar">
+          <span id="frame-game-title">🐧 Pingu Hop</span>
+          <span id="frame-theme-label">Classic Meadow</span>
+        </div>
+
+        <!-- The actual game -->
+        <div id="game-container">
+          <canvas id="gameCanvas"></canvas>
+
+          <!-- Start Screen -->
+          <div id="start-screen" class="screen">
+            <div class="screen-content">
+              <div class="penguin-logo">🐧</div>
+              <h1>Pingu Hop!</h1>
+              <p class="subtitle">Help Pingu cross safely!</p>
+              <button id="start-btn" class="btn">Start Hopping!</button>
+            </div>
+          </div>
+
+          <!-- Game Over Screen -->
+          <div id="gameover-screen" class="screen hidden">
+            <div class="screen-content">
+              <div class="penguin-logo sad">🐧</div>
+              <h1>Oh no!</h1>
+              <p id="gameover-reason" class="subtitle"></p>
+              <div class="score-display-final">
+                <p>You crossed</p>
+                <div id="final-score">0</div>
+                <p>lanes!</p>
+              </div>
+              <div id="high-score-display" class="high-score"></div>
+              <div class="score-display-final coins-final">
+                <p>🪙 Coins collected</p>
+                <div id="final-coins">0</div>
+              </div>
+              <div id="high-coins-display" class="high-score"></div>
+              <button id="restart-btn" class="btn">Try Again!</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div id="frame-bottombar">
+          <span>Use arrow keys or WASD to move · Tap to play on mobile</span>
+        </div>
+      </div>
+
+    </div><!-- /main -->
+  </div><!-- /app -->
+
+  <script src="game.js"></script>
+</body>
+</html>
