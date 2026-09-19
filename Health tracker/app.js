@@ -662,7 +662,8 @@ function renderMealHistory() {
 
 function renderSavedMealCard(meal) {
   const title = displayMealTitle(meal);
-  const thumbnail = cartoonMealThumbnail(meal);
+  const images = loadMealImages();
+  const thumbnail = images[String(meal.id)] || cartoonMealThumbnail(meal);
   const description = savedMealDescription(meal);
   return `
     <details class="saved-meal" data-meal-id="${meal.id}">
