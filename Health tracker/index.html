@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#3d5a80" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="miao" />
+    <title>miao</title>
+    <link rel="icon" href="./miao-logo.png" type="image/png" />
+    <link rel="apple-touch-icon" href="./miao-logo.png" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <div class="brand">
+          <img class="brand-logo" src="./miao-logo.png" alt="" />
+          <div class="brand-copy">
+            <strong>miao</strong>
+            <span>Daily health companion</span>
+          </div>
+        </div>
+        <nav>
+          <a href="#dashboard" class="active" data-tab="dashboard" data-child-icon="⌂">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5 12 5l8 6.5V20a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1v-8.5Z" /></svg>
+            <span>Home</span>
+          </a>
+          <a href="#meals" data-tab="meals" data-child-icon="♡">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3v18M9 3v7a4 4 0 0 1-4 4M14 3v18M14 3c4 1.8 5.8 4.8 5.8 9.2 0 2.8-1.7 4.8-5.8 5.8" /></svg>
+            <span>Meals</span>
+          </a>
+          <a href="#movement" data-tab="movement" data-child-icon="🐾">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 21c1.8-2.4 2.9-4.6 3.2-6.7M13.5 9.5l-3.1 4.8M6.5 9l3-4.5L14 6l3 3.5M14 6l-1.6 3.2 3.4 1.7L19 16M16 3.4h.1" /></svg>
+            <span>Move</span>
+          </a>
+          <a href="#report" data-tab="report" data-child-icon="★">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V5a1 1 0 0 1 1-1h9l4 4v11a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1Z" /><path d="M14 4v5h5M8 14h8M8 17h5" /></svg>
+            <span>Report</span>
+          </a>
+          <a href="#profile" data-tab="profile" data-child-icon="☻">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4 21a8 8 0 0 1 16 0" /></svg>
+            <span>Profile</span>
+          </a>
+        </nav>
+        <div class="standards">
+          <span>Guideline basis</span>
+          <p>WHO physical activity guidance, HHS activity guidance, and common dietary reference ranges.</p>
+        </div>
+      </aside>
+
+      <main>
+        <div class="install-banner" id="installBanner" hidden>
+          <div>
+            <strong>Install miao</strong>
+            <span>Use it like a phone app, even offline.</span>
+          </div>
+          <button class="secondary" id="installApp">Install</button>
+        </div>
+
+        <section id="dashboard" class="app-page active" data-page="dashboard">
+          <div class="topbar dashboard-topbar">
+            <div>
+              <p class="eyebrow today-line">Today <span id="todayDate">--</span></p>
+              <h1 id="dashboardGreeting">Good day</h1>
+              <p class="dashboard-subtitle">Here's your daily wellness overview.</p>
+            </div>
+            <div class="mode-switch" role="group" aria-label="Health mode">
+              <button class="segmented active" data-mode="adult">Adult</button>
+              <button class="segmented" data-mode="child">Children</button>
+            </div>
+          </div>
+
+          <section class="wellness-hero" aria-label="Wellness journey">
+            <span class="hero-pill">Your wellness journey</span>
+          </section>
+
+          <section class="summary-grid dashboard-summary" aria-label="Daily summary">
+            <article class="metric dashboard-card water-card">
+              <span class="metric-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M8.5 3.8C6.3 6.5 4.8 8.9 4.8 12a3.7 3.7 0 0 0 7.4 0c0-3.1-1.5-5.5-3.7-8.2Z" />
+                  <path d="M16.2 6.2c-1.9 2.3-3.2 4.4-3.2 7.1a3.2 3.2 0 0 0 6.4 0c0-2.7-1.3-4.8-3.2-7.1Z" />
+                  <path d="M7 12.5a2 2 0 0 0 2 1.8" />
+                </svg>
+              </span>
+              <span class="metric-label" data-adult-label="Water intake" data-child-label="Water sips">Water intake</span>
+              <strong id="waterSummary">0.0 L</strong>
+              <div class="metric-progress"><i id="waterProgress"></i></div>
+              <small id="waterTarget">Target 2.7 L</small>
+            </article>
+            <article class="metric dashboard-card steps-card">
+              <span class="metric-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M7.6 13.3c-1.3.2-2.4 1.6-2.2 3.2.2 1.3 1 2.1 2.1 2 1.3-.1 2.3-1.5 2.1-3.1-.1-1.3-.9-2.2-2-2.1Z" />
+                  <path d="M6.9 9.8c-.7.1-1.2.7-1.1 1.4.1.6.5 1 1.1.9.7-.1 1.2-.7 1.1-1.4-.1-.6-.5-1-1.1-.9Z" />
+                  <path d="M16.5 4.7c1.3.2 2.4 1.6 2.2 3.2-.2 1.3-1 2.1-2.1 2-1.3-.1-2.3-1.5-2.1-3.1.1-1.3.9-2.2 2-2.1Z" />
+                  <path d="M17.1 12.1c.7.1 1.2.7 1.1 1.4-.1.6-.5 1-1.1.9-.7-.1-1.2-.7-1.1-1.4.1-.6.5-1 1.1-.9Z" />
+                </svg>
+              </span>
+              <span class="metric-label" data-adult-label="Steps today" data-child-label="Paws today">Steps today</span>
+              <strong id="stepSummary">0 steps</strong>
+              <div class="metric-progress"><i id="stepProgress"></i></div>
+              <small id="stepGoalLabel">Personal activity goal</small>
+            </article>
+            <article class="metric dashboard-card nutrition-card">
+              <span class="metric-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M6 3v8" />
+                  <path d="M4 3v4.8a2 2 0 0 0 4 0V3" />
+                  <path d="M6 11v10" />
+                  <path d="M15 3v18" />
+                  <path d="M15 3c3.2 1.4 4.8 3.9 4.8 7.5 0 2.3-1.4 4-4.8 4.7" />
+                </svg>
+              </span>
+              <span class="metric-label" data-adult-label="Nutrition" data-child-label="Yummy fuel">Nutrition</span>
+              <strong id="mealCountSummary">0 meals</strong>
+              <small id="foodBalanceText">No meals yet</small>
+            </article>
+            <article class="metric dashboard-card wellness-card">
+              <span class="metric-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M3 12h3l2-5 3.5 10 2.5-6h3" />
+                  <path d="M17.2 10.8c.8-1.5 3.8-1.3 3.8 1.6 0 2.5-3 4.7-5.3 6.3-1.1-.8-2.6-1.9-3.8-3.2" />
+                </svg>
+              </span>
+              <span class="metric-label" data-adult-label="Mood check-in" data-child-label="Mood check-in">Mood check-in</span>
+              <strong id="scoreSummary">--</strong>
+              <small id="scoreNote">Generate a report</small>
+            </article>
+          </section>
+
+          <section class="panel weekly-activity" aria-label="Weekly activity">
+            <div class="panel-title">
+              <div>
+                <p class="eyebrow">Movement trend</p>
+                <h2>Weekly activity</h2>
+              </div>
+              <span class="range-pill">Last 7 days</span>
+            </div>
+            <div class="activity-bars" id="weeklyActivityBars">
+              <span style="--level: 42%"><i></i><small>S</small></span>
+              <span style="--level: 62%"><i></i><small>M</small></span>
+              <span style="--level: 50%"><i></i><small>T</small></span>
+              <span style="--level: 78%"><i></i><small>W</small></span>
+              <span style="--level: 58%"><i></i><small>T</small></span>
+              <span class="active" style="--level: 70%"><i></i><small>F</small></span>
+              <span style="--level: 54%"><i></i><small>S</small></span>
+            </div>
+            <p class="weekly-note">Activity bars estimate your recent movement pattern from today's steps.</p>
+          </section>
+
+          <section class="panel dashboard-meals" aria-label="Today's meals">
+            <div class="dashboard-meals-header">
+              <h2>Today's meals</h2>
+              <a href="#meals">View all <span aria-hidden="true">→</span></a>
+            </div>
+            <div id="dashboardMealsList" class="dashboard-meals-list">
+              <div class="dashboard-empty-meal">
+                <strong>No meals logged yet</strong>
+                <span>Use Meal photo analysis to add today's first meal.</span>
+              </div>
+            </div>
+          </section>
+
+        </section>
+
+        <section id="profile" class="app-page" data-page="profile">
+          <div class="topbar">
+            <div>
+              <p class="eyebrow">Personal details</p>
+              <h1>Profile</h1>
+            </div>
+          </div>
+
+          <article class="panel profile-panel">
+            <div class="panel-title">
+              <div>
+                <p class="eyebrow">Setup</p>
+                <h2>Edit your information</h2>
+              </div>
+            </div>
+            <form id="profileForm" class="form-grid">
+              <label>Name
+                <input id="fullName" type="text" autocomplete="name" placeholder="Your name" />
+              </label>
+              <label>Height
+                <span><input id="height" type="number" min="80" max="230" value="170" /> cm</span>
+              </label>
+              <label>Weight
+                <span><input id="weight" type="number" min="20" max="250" value="65" /> kg</span>
+              </label>
+              <label>Age
+                <span><input id="age" type="number" min="3" max="100" value="30" /> yrs</span>
+              </label>
+              <label>Sex
+                <select id="sex">
+                  <option value="female">Female</option>
+                  <option value="male">Male</option>
+                </select>
+              </label>
+              <button class="secondary" type="submit">Save profile</button>
+            </form>
+          </article>
+        </section>
+
+        <section id="meals" class="app-page panel" data-page="meals">
+          <div class="panel-title meal-hero-title">
+            <div>
+              <p class="eyebrow">Food intelligence</p>
+              <h2>Scan your meal</h2>
+              <p class="meal-page-copy">Upload a meal photo, let AI identify ingredients, then edit portions before saving to your diary.</p>
+            </div>
+            <button class="secondary" id="clearMeals">Clear meals</button>
+          </div>
+          <div class="meal-layout">
+            <div class="upload-zone scan-zone">
+              <input id="mealPhoto" type="file" accept="image/*" capture="environment" />
+              <img id="mealPreview" alt="" />
+              <div class="scanner-frame" aria-hidden="true">
+                <span></span><span></span><span></span><span></span>
+              </div>
+              <div class="scan-caption" aria-hidden="true">Align food inside the scanner</div>
+              <div id="uploadHint">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16.5V19a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2.5M16 8l-4-4-4 4M12 4v12" /></svg>
+                <strong>Add a food photo</strong>
+                <span>Tap here or drop a JPEG, PNG, or WebP under 8 MB.</span>
+              </div>
+            </div>
+            <form id="mealForm" class="meal-form">
+              <section class="meal-water-card" aria-label="Water logging in meals">
+                <div>
+                  <p class="eyebrow">Hydration</p>
+                  <h3>Log water with meals</h3>
+                  <strong id="mealWaterSummary">0.0 L</strong>
+                  <small id="mealWaterTarget">Target 2.7 L</small>
+                </div>
+                <div class="meal-water-visual">
+                  <div class="mini-bottle" id="mealWaterBottle" aria-hidden="true">
+                    <div class="pour-stream"></div>
+                    <div id="mealWaterFill"><span class="water-wave"></span></div>
+                  </div>
+                  <div class="meal-water-controls">
+                    <label for="mealWaterAmount">Add water</label>
+                    <div class="inline-control">
+                      <input id="mealWaterAmount" type="number" min="50" max="2000" step="50" value="250" />
+                      <span>ml</span>
+                    </div>
+                    <div class="meal-water-actions">
+                      <button id="mealAddWater" class="primary" type="button">Add drink</button>
+                      <button id="mealResetWater" class="secondary" type="button">Reset</button>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <div class="ai-status" id="aiStatus">
+                <strong>Waiting for photo</strong>
+                <span>Choose a valid image, then scan the visible foods.</span>
+              </div>
+              <button class="primary scan-meal-button" id="detectFoodButton" type="button" disabled>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3" /><path d="M8 12h8M12 8v8" /></svg>
+                Scan Meal
+              </button>
+              <div class="analysis-result" id="analysisResult" hidden></div>
+              <div class="save-meal-controls">
+                <label>Date
+                  <input id="mealDate" type="date" />
+                </label>
+                <label>Meal name
+                  <input id="mealName" type="text" list="mealNameOptions" placeholder="Lunch" />
+                  <datalist id="mealNameOptions">
+                    <option value="Breakfast"></option>
+                    <option value="Lunch"></option>
+                    <option value="Dinner"></option>
+                    <option value="Snack"></option>
+                  </datalist>
+                </label>
+              </div>
+              <button class="primary" id="addMealButton" type="submit" disabled>Save Meal</button>
+            </form>
+          </div>
+          <div class="history-toolbar">
+            <div>
+              <p class="eyebrow">Meal history</p>
+              <h2>Saved meals</h2>
+            </div>
+            <button class="secondary" id="loadOlderDays" type="button">Load older days</button>
+          </div>
+          <div id="historyStatus" class="history-status">Loading meal history...</div>
+          <div id="mealHistory" class="history-list"></div>
+          <div id="mealList" class="records" hidden></div>
+        </section>
+
+        <section id="movement" class="app-page" data-page="movement">
+          <div class="topbar">
+            <div>
+              <p class="eyebrow">Movement</p>
+              <h1>Activity</h1>
+            </div>
+          </div>
+          <div class="work-grid">
+          <article class="panel">
+            <div class="panel-title">
+              <div>
+                <p class="eyebrow">Apple Health</p>
+                <h2>Steps and walking</h2>
+              </div>
+              <button class="icon-button" id="mockSync" aria-label="Sync sample Health data">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15 6.7M3 12a9 9 0 0 1 15-6.7M18 3v5h-5M6 21v-5h5" /></svg>
+              </button>
+            </div>
+            <div class="health-note">HealthKit requires an iOS app permission layer. This web prototype accepts Apple Health export values or a future app sync payload.</div>
+            <form id="healthForm" class="form-grid">
+              <label>Steps
+                <input id="steps" type="number" min="0" value="6200" />
+              </label>
+              <label>Walking time
+                <span><input id="walkMinutes" type="number" min="0" value="52" /> min</span>
+              </label>
+              <button class="secondary" type="submit">Save movement</button>
+            </form>
+          </article>
+
+          <article class="panel">
+            <div class="panel-title">
+              <div>
+                <p class="eyebrow">Exercise</p>
+                <h2>Gym or workout</h2>
+              </div>
+            </div>
+            <form id="exerciseForm" class="form-grid">
+              <label>Type
+                <select id="exerciseType">
+                  <option value="gym">Gym strength</option>
+                  <option value="run">Running</option>
+                  <option value="cycle">Cycling</option>
+                  <option value="swim">Swimming</option>
+                  <option value="yoga">Yoga</option>
+                </select>
+              </label>
+              <label>Duration
+                <span><input id="exerciseMinutes" type="number" min="5" value="45" /> min</span>
+              </label>
+              <label>Intensity
+                <select id="exerciseIntensity">
+                  <option value="light">Light</option>
+                  <option value="moderate" selected>Moderate</option>
+                  <option value="vigorous">Vigorous</option>
+                </select>
+              </label>
+              <button class="primary" type="submit">Add exercise</button>
+            </form>
+            <div id="exerciseList" class="records compact"></div>
+          </article>
+          </div>
+        </section>
+
+        <section id="report" class="app-page panel report-panel" data-page="report">
+          <div class="panel-title">
+            <div>
+              <p class="eyebrow">Agent report</p>
+              <h2>Weekly health review</h2>
+            </div>
+            <div class="report-actions">
+              <button class="secondary" id="downloadReportPdf" type="button">Download PDF</button>
+              <button class="primary" id="generateReport">Generate report</button>
+            </div>
+          </div>
+          <div class="report-grid">
+            <div class="chart-wrap">
+              <canvas id="macroChart" width="260" height="260" aria-label="Food component pie chart"></canvas>
+              <div id="chartLegend" class="legend"></div>
+            </div>
+            <div id="reportOutput" class="report-copy">
+              <h3>Ready when you are</h3>
+              <p>Add water, meals, movement, and exercise, then generate a weekly report. The agent will estimate intake, expenditure, balance, and next-week advice.</p>
+            </div>
+          </div>
+        </section>
+
+        <footer>
+          Install from Safari or Chrome using Add to Home Screen. Prototype only; it estimates wellness patterns and does not provide medical diagnosis.
+        </footer>
+      </main>
+    </div>
+
+    <div class="mood-modal" id="moodModal" role="dialog" aria-modal="true" aria-labelledby="moodTitle" hidden>
+      <section class="mood-card">
+        <button class="mood-close" id="moodClose" type="button" aria-label="Close mood check-in">×</button>
+        <header class="mood-card__header">
+          <p class="mood-card__kicker">Daily check-in</p>
+          <h2 id="moodTitle">How are you feeling?</h2>
+          <p class="mood-card__intro">Move the slider to capture your mood.</p>
+        </header>
+        <div class="mood-slider" id="moodSlider" role="group" aria-label="Mood rating">
+          <div class="mood-slider__track" aria-hidden="true">
+            <i class="mood-slider__divider" style="left:20%"></i>
+            <i class="mood-slider__divider" style="left:40%"></i>
+            <i class="mood-slider__divider" style="left:60%"></i>
+            <i class="mood-slider__divider" style="left:80%"></i>
+          </div>
+          <div class="mood-slider__stops" id="moodStops"></div>
+          <div class="mood-slider__thumb" id="moodThumb" aria-hidden="true"></div>
+        </div>
+        <div class="mood-card__result" aria-live="polite">
+          <span class="mood-card__result-dot" id="moodDot"></span>
+          <span>Feeling <strong id="moodResult"></strong></span>
+        </div>
+        <button class="primary mood-save" id="moodSave" type="button">Save check-in</button>
+      </section>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

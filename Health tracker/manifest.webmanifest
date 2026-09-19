@@ -1,0 +1,20 @@
+{
+  "name": "miao",
+  "short_name": "miao",
+  "description": "A mobile health tracker for water, meals, movement, exercise, and weekly wellness reports.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#e0fbfc",
+  "theme_color": "#3d5a80",
+  "categories": ["health", "fitness", "lifestyle"],
+  "icons": [
+    {
+      "src": "./miao-logo.png",
+      "sizes": "1292x1218",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
