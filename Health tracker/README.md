@@ -8,7 +8,7 @@ The app calls the OpenAI API from `main.py` using the OpenAI Python SDK. When th
 
 The app requires an OpenAI API key for AI food detection, so users should create their own key from the OpenAI platform, place it in a private .env file as OPENAI_API_KEY=your_key_here. To run the app, install the dependencies with pip install -r requirements.txt, then start the FastAPI server with uvicorn main:app --host 127.0.0.1 --port 8765 and open http://127.0.0.1:8765 in a browser.
 
-#AI Log 
+# AI Log 
 I want to create a website that helps me keep track of my health. I want the website to have the below functions:
 1. Record how much water the user drank today
 2. User can take a photo of their meal and upload to website, and website will automatically detect what food they are eating and the relevant calories as well as the function of each food (e.g., meat is protein, fruit is vitamin, etc.)
