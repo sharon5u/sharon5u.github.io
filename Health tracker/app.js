@@ -49,7 +49,7 @@ let isLoadingHistory = false;
 
 const MAX_IMAGE_BYTES = 8 * 1024 * 1024;
 const ALLOWED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
-const API_BASE = location.protocol === "file:" ? "http://127.0.0.1:8765" : "";
+const API_BASE = "https://miao-backend-8faq.onrender.com";
 const moods = [
   { label: "Very unhappy", color: "#a96bea", ink: "#57258f", mouth: "sad", eyes: "droop", tears: true },
   { label: "Unhappy", color: "#f29135", ink: "#8a351d", mouth: "sad", eyes: "dot-eyes" },
@@ -1098,7 +1098,7 @@ async function downloadReportPdf() {
     URL.revokeObjectURL(url);
   } catch (error) {
     const message = error.message === "Failed to fetch"
-      ? "Could not reach the local app server. Open http://127.0.0.1:8765 or start the FastAPI server, then try Download PDF again."
+      ? "Could not reach the server. It may be waking up, so wait 30 seconds and try again."
       : error.message || "Could not generate the PDF report.";
     $("#reportOutput").innerHTML = `<h3>PDF failed</h3><p>${message}</p>`;
   } finally {
