@@ -1,4 +1,4 @@
-const CACHE_NAME = "miao-v34";
+const CACHE_NAME = "miao-v35";
 const APP_ASSETS = [
   "./",
   "./index.html",
